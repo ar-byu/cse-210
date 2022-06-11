@@ -22,8 +22,14 @@ def get_board():
     return board
 
 def make_move(player, board):
-    square = int(input(f"{player}'s turn to choose a square (1-9): "))
-    board[square - 1] = player
+    turn = True
+    while turn:
+        square = int(input(f"{player}'s turn to choose a square (1-9): "))
+        if board[square - 1] == "x" or board[square - 1] == "o":    
+            print("That square is already full. Please pick a different one.")
+        else:
+            turn = False
+            board[square - 1] = player
 
 def win_condition(board):
     return (board[0] == board[1] == board[2] or
@@ -36,10 +42,11 @@ def win_condition(board):
             board[2] == board[4] == board[6])
 
 def draw_condition(board):
-    for square in range(9):
+    for square in board:
         if board[square] != "x" and board[square] != "o":
             return False
-    return True 
+        else:
+            return True
 
 def main():
     player = next_player("")
@@ -49,7 +56,7 @@ def main():
         make_move(player, board)
         player = next_player(player)
     print_board(board)
-    print("Thanks for playing!")
+    print(f"{next_player(player)} wins! Thanks for playing!")
            
 
 main()
