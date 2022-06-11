@@ -42,21 +42,23 @@ def win_condition(board):
             board[2] == board[4] == board[6])
 
 def draw_condition(board):
-    for square in board:
+    for square in range(9):
         if board[square] != "x" and board[square] != "o":
             return False
-        else:
-            return True
+    return True
 
 def main():
     player = next_player("")
     board = get_board()
-    while not (win_condition(board)) or not (draw_condition(board)):
+    while not (win_condition(board) or draw_condition(board)):
         print_board(board)
         make_move(player, board)
         player = next_player(player)
     print_board(board)
-    print(f"{next_player(player)} wins! Thanks for playing!")
+    if win_condition(board):
+        print(f"{next_player(player)} wins! Thanks for playing!")
+    else:
+        print("It's a draw. Thanks for playing!")
            
 
 main()
