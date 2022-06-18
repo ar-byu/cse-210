@@ -1,7 +1,7 @@
 import random
 # Imports "random" module
 
-class Game:
+class GameRound:
     # Constructs new game
     def __init__(self):
         # Initializes attributes
@@ -21,7 +21,7 @@ class Game:
         # Determines if guess is correct or not
         if (guess == "h" and self.second_num > self.first_num) or (guess == "l" and self.second_num < self.first_num):
             print("That's correct!")
-        elif (guess == "h" and self.second_num < self.first_num) or (guess == "l" and self.second_num > self.first_num):
+        else:
             print("That's incorrect.")
         print(f"The card was: {self.second_num}")
        
@@ -46,13 +46,14 @@ def main():
     game_state = GameState()
     score = 300
     times_played = 0
+    print("Welcome to High Card, Low Card! You will be given two random numbers between 1 and 13. You won't be able to see the second number. You can then guess if the second number is higher or lower than the first. Have fun!")
 
     while game_state.continue_game:
         # Generates a new game while continue_game is set to True. Retrieves guess from player. Adds 1 to the amount of rounds played.
         # Calculates the score. Retrieves input from player to see if the game should continue. If the player does not want to
         # continue playing, displays the rounds played and sets continue_game to False.
         print()
-        new_game = Game()
+        new_game = GameRound()
         new_game.get_guess()
         times_played += 1
         score = calculate_score(score, new_game.guess, new_game.first_num, new_game.second_num)
