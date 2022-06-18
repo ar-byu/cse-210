@@ -32,6 +32,7 @@ class GameState:
         self.times_played = 0
 
     def calculate_score(self, won):
+        # Adds one to the amount of times played.
         self.times_played += 1
         # Calculates what the player's new score should be
         if won:
@@ -48,9 +49,9 @@ class GameMaster:
         print("Welcome to High Card, Low Card! You will be given two random numbers between 1 and 13. You won't be able to see the second number. You can then guess if the second number is higher or lower than the first. Have fun!")
 
         while True:
-            # Generates a new game while cont_game is set to True. Retrieves guess from player. Adds 1 to the amount of rounds played.
-            # Calculates the score. Retrieves input from player to see if the game should continue. If the player does not want to
-            # continue playing, displays the rounds played and sets continue_game to False.
+            # Generates a new game while cont_game is set to True. Retrieves guess from player.
+            # Retrieves input from player to see if the game should continue. If the player does not want to
+            # continue playing, displays the rounds played and breaks the loop.
             print()
             GameRound(self.game_state).get_guess()
             print(f"Your score is: {self.game_state.score}")
